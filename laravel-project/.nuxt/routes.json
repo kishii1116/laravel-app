@@ -1,0 +1,9 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_c5c54670"
+  }
+]
