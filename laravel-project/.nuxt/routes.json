@@ -1,8 +1,16 @@
 [
   {
+    "name": "enquete",
+    "path": "/enquete",
+    "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/index.vue",
+    "chunkName": "pages/enquete/index",
+    "_name": "_1133e222"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_c5c54670"
   }
 ]

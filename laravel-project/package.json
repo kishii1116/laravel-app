@@ -27,6 +27,7 @@
         "webpack-cli": "^4.8.0"
     },
     "dependencies": {
+        "@nuxtjs/axios": "^5.13.6",
         "nuxt": "^2.15.8"
     }
 }
