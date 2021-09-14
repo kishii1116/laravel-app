@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use app\Http\Controllers\enquete\EnqueteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,18 @@ use Illuminate\Http\Request;
 |
 */
 
+if (app()->isLocal()) {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Authorization, Content-Type');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE');
+    header('Access-Control-Expose-Headers: X-Pagination');
+    header('Access-Control-Allow-Credentials: true');
+}
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/', function(){ return 'helloworld';});
+Route::get('/', 'enquete\\EnqueteController@phpinfo');
+
+Route::post('/enquete','enquete\\EnqueteController@save');

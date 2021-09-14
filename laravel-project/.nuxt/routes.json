@@ -7,6 +7,13 @@
     "_name": "_1133e222"
   },
   {
+    "name": "enquete-done",
+    "path": "/enquete/done",
+    "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/done.vue",
+    "chunkName": "pages/enquete/done",
+    "_name": "_708aae62"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/index.vue",
