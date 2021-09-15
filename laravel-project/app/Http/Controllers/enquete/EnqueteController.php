@@ -25,7 +25,6 @@ class EnqueteController extends Controller
         $enquete_management->save();
         //$array = array();
         //return $array;
-        //return response()->json('ok', Response::HTTP_OK);
-        return view('/');
+        return response()->json('saved', Response::HTTP_OK);
     }
 }
