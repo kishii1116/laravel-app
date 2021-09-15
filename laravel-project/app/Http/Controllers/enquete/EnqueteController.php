@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\EnqueteRequest;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\EnqueteManagement;
+//use Illuminate\Support\Facades\Auth;
 
 class EnqueteController extends Controller
 {
@@ -22,9 +23,9 @@ class EnqueteController extends Controller
         $enquete_management->mail = $request->mail;
         $enquete_management->send_mail = $request->send_mail;
         $enquete_management->comment = $request->comment;
+        $enquete_management->last_updated = __METHOD__;
+        //$enquete_management->last_updated_user = auth()->user();
         $enquete_management->save();
-        //$array = array();
-        //return $array;
         return response()->json('saved', Response::HTTP_OK);
     }
 }

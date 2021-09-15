@@ -32,7 +32,8 @@
         </div>
         <div>
             <div>メール送信可否</div>
-            <input type="checkbox" id="mail_send" v-model="send_mail">
+            <input type="checkbox" id="mail_send" name="mail_send" v-model="send_mail" value="1">
+            <input type="hidden" id="mail_send" name="mail_send" v-model="send_mail" value="0">
             <label for="mail_send">メールマガジンを受け取る</label>
         </div>
         <div>
@@ -60,7 +61,7 @@ export default{
             sex: '',
             age: '',
             mail: '',
-            send_mail: '',
+            send_mail: '1',
             comment: '',
             //apiのresponseからエラーメッセージを入れる
             err_name: '',
