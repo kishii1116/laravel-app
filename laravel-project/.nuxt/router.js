@@ -5,6 +5,7 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _1133e222 = () => interopDefault(import('../client/pages/enquete/index.vue' /* webpackChunkName: "pages/enquete/index" */))
+const _d1a829e0 = () => interopDefault(import('../client/pages/enquete/confirm.vue' /* webpackChunkName: "pages/enquete/confirm" */))
 const _708aae62 = () => interopDefault(import('../client/pages/enquete/done.vue' /* webpackChunkName: "pages/enquete/done" */))
 const _c5c54670 = () => interopDefault(import('../client/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -23,6 +24,10 @@ export const routerOptions = {
     path: "/enquete",
     component: _1133e222,
     name: "enquete"
+  }, {
+    path: "/enquete/confirm",
+    component: _d1a829e0,
+    name: "enquete-confirm"
   }, {
     path: "/enquete/done",
     component: _708aae62,

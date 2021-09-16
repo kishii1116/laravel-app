@@ -28,4 +28,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/', 'enquete\\EnqueteController@phpinfo');
 
-Route::post('/enquete','enquete\\EnqueteController@save');
+Route::post('/enquete','enquete\\EnqueteController@validationCheck');
+Route::post('/enquete/save','enquete\\EnqueteController@save');

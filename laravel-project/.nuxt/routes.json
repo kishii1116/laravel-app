@@ -7,6 +7,13 @@
     "_name": "_1133e222"
   },
   {
+    "name": "enquete-confirm",
+    "path": "/enquete/confirm",
+    "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/confirm.vue",
+    "chunkName": "pages/enquete/confirm",
+    "_name": "_d1a829e0"
+  },
+  {
     "name": "enquete-done",
     "path": "/enquete/done",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/done.vue",

@@ -15,6 +15,10 @@ class EnqueteController extends Controller
         phpinfo();
     }
 
+    public function validationCheck(EnqueteRequest $request) {
+        return response()->json('saved', Response::HTTP_OK);
+    }
+
     public function save(EnqueteRequest $request) {
         $enquete_management = new EnqueteManagement;
         $enquete_management->name = $request->name;
