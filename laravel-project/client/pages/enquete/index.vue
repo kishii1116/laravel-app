@@ -1,20 +1,12 @@
 <template>
     <div>
-        <h4>システムへのご意見をお聞かせください。</h4>
+        <h4>アンケート管理システム</h4>
+        
         <div>
-            <div>氏名</div>
-            <input type="text" v-model="name">
-            <div v-if="err_name" style="color:red;">{{ err_name }}</div>
-        </div>
-        <div>
-            <div>性別</div>
-            <input type="radio" id="radio_man" v-model="sex" value="1"><label for="radio_man">男性</label>
-            <input type="radio" id="radio_woman" v-model="sex" value="2"><label for="radio_woman">女性</label>
-            <div v-if="err_sex" style="color:red;">{{ err_sex }}</div>
-        </div>
-        <div>
-            <div>年代</div>
-            <select v-model="age">
+            氏名
+            <input type="text" v-model="search_name">
+            年代
+            <select v-model="search_age">
                 <option value="">選択してください</option>
                 <option value="10">10代以下</option>
                 <option value="20">20代</option>
@@ -23,143 +15,131 @@
                 <option value="50">50代</option>
                 <option value="60">60代以上</option>
             </select>
-            <div v-if="err_age" style="color:red;">{{ err_age }}</div>
+            性別
+            <input type="radio" id="radio_all" v-model="search_sex" value=""><label for="radio_all">すべて</label>
+            <input type="radio" id="radio_man" v-model="search_sex" value="1"><label for="radio_man">男性</label>
+            <input type="radio" id="radio_woman" v-model="search_sex" value="2"><label for="radio_woman">女性</label>
         </div>
         <div>
-            <div>メールアドレス</div>
-            <input type="text" v-model="mail">
-            <div v-if="err_mail" style="color:red;">{{ err_mail }}</div>
+            登録日
+            <input type="date" v-model="search_start">
+            〜
+            <input type="date" v-model="search_end">
+            メール送信許可
+            <input type="checkbox" id="mail_send" name="mail_send" v-model="search_send_mail" value="1">
+            <input type="hidden" id="mail_send" name="mail_send" v-model="search_send_mail" value="">
         </div>
         <div>
-            <div>メール送信可否</div>
-            <input type="checkbox" id="mail_send" name="mail_send" v-model="send_mail" value="1">
-            <input type="hidden" id="mail_send" name="mail_send" v-model="send_mail" value="0">
-            <label for="mail_send">メールマガジンを受け取る</label>
+            キーワード
+            <input type="text" v-model="search_keyword">
         </div>
         <div>
-            <div>ご意見</div>
-            <textarea v-model="comment"></textarea>
-            <div v-if="err_comment" style="color:red;">{{ err_comment }}</div>
+            <button>リセット</button>
+            <button class="btn btn-primary">検索する</button>
         </div>
-        <div>
-            <button @click="save()">保存する（仮）</button>
-            <button @click="validationCheck()">入力内容を確認する</button>
-        </div>
+        
+        <table>
+            <tbody>
+                <tr>
+                    <th>日時</th>
+                    <th>氏名</th>
+                    <th>性別</th>
+                    <th>年代</th>
+                    <th>メールアドレス</th>
+                    <th>詳細を見る</th>
+                </tr>
+                <tr v-for="data in dataList" :key="data.id">
+                    <td>
+                        {{ data.create_dt | displayDatetime }}
+                    </td>
+                    <td>
+                        {{ data.name }}
+                    </td>
+                    <td>
+                        {{ data.sex | displaySex }}
+                    </td>
+                    <td>
+                        {{ data.age | displayAge }}
+                    </td>
+                    <td>
+                        {{ data.mail }}
+                    </td>
+                    <td>
+                        <a>詳細を見る</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
+import moment from "moment";
+
 export default{
     name: 'Enquete',
     head: {
         //画面タイトル
-        title: 'システムへのご意見｜PG研修',
+        title: 'アンケート管理システム｜PG研修',
     },
     data() {
         return {
             //入力項目
-            name: '',
-            sex: '',
-            age: '',
-            mail: '',
-            send_mail: '1',
-            comment: '',
-            //apiのresponseからエラーメッセージを入れる
-            err_name: '',
-            err_sex: '',
-            err_age: '',
-            err_mail: '',
-            err_comment: '',
+            dataList: [],
+            search_name: '',
+            search_sex: '',
+            search_age: '',
+            search_start: '',
+            search_end: '',
+            search_send_mail: '',
+            search_keyword: '',
         };
     },
-    methods: {
-        async validationCheck() {
-            await this.$axios.post('http://localhost:8000/api/enquete', {
-                name: this.name,
-                sex: this.sex,
-                age: this.age,
-                mail: this.mail,
-                send_mail: this.send_mail,
-                comment: this.comment,
+    /*
+    async created() {
+		await this.getEnqueteList();
+	},
+    */
+	async mounted() {
+		await this.getEnqueteList();
+	},
+	methods: {
+		async getEnqueteList() {
+            /*
+            await this.$axios.get('http://localhost:8000/api/enquete/list').then(res => {
+                this.dataList = res.data.data
             })
-            //成功した時
-            .then(res => {
-                this.$router.push({ path: '/enquete/confirm', query:{
-                    name: this.name,
-                    sex: this.sex,
-                    age: this.age,
-                    mail: this.mail,
-                    send_mail: this.send_mail,
-                    comment: this.comment,
-                }});
-            })
-            //失敗した時
-            .catch(e => {
-                //エラーをリセット
-                this.err_name = '';
-                this.err_sex = '';
-                this.err_age = '';
-                this.err_mail = '';
-                this.err_comment = '';
-                //入力チェックで引っかかったら、エラーメッセージを入れる
-                //ひっかからなかったら、オブジェクトができないた、if
-                if( e.response.data.errors.name ) {
-                    this.err_name = e.response.data.errors.name[0];
-                }
-                if( e.response.data.errors.sex ) {
-                    this.err_sex = e.response.data.errors.sex[0];
-                }
-                if( e.response.data.errors.age ) {
-                    this.err_age = e.response.data.errors.age[0];
-                }
-                if( e.response.data.errors.mail ) {
-                    this.err_mail = e.response.data.errors.mail[0];
-                }
-                if( e.response.data.errors.comment ) {
-                    this.err_comment = e.response.data.errors.comment[0];
-                }
-            })
+            */
+			await this.$axios.get('http://localhost:8000/api/enquete/list')
+				.then(({ data, headers }) => {
+					this.dataList = data;
+				});
+		},
+    },
+    filters: {
+        displaySex: function(sex) {
+            let val = '';
+            switch(sex) {
+                case '1': val = '男性'; break;
+                case '2': val = '女性'; break;
+            }
+            return val;
         },
-        async save() {
-            await this.$axios.post('http://localhost:8000/api/enquete/save', {
-                name: this.name,
-                sex: this.sex,
-                age: this.age,
-                mail: this.mail,
-                send_mail: this.send_mail,
-                comment: this.comment,
-            })
-            //成功した時
-            .then(res => {
-                this.$router.push('/enquete/done');
-            })
-            //失敗した時
-            .catch(e => {
-                //エラーをリセット
-                this.err_name = '';
-                this.err_sex = '';
-                this.err_age = '';
-                this.err_mail = '';
-                this.err_comment = '';
-                //入力チェックで引っかかったら、エラーメッセージを入れる
-                //ひっかからなかったら、オブジェクトができないた、if
-                if( e.response.data.errors.name ) {
-                    this.err_name = e.response.data.errors.name[0];
-                }
-                if( e.response.data.errors.sex ) {
-                    this.err_sex = e.response.data.errors.sex[0];
-                }
-                if( e.response.data.errors.age ) {
-                    this.err_age = e.response.data.errors.age[0];
-                }
-                if( e.response.data.errors.mail ) {
-                    this.err_mail = e.response.data.errors.mail[0];
-                }
-                if( e.response.data.errors.comment ) {
-                    this.err_comment = e.response.data.errors.comment[0];
-                }
-            })
-        }
-    }
+        displayAge: function(age) {
+            let val = '';
+            switch(age) {
+                case '10': val = '10代以下'; break;
+                case '20': val = '20代'; break;
+                case '30': val = '30代'; break;
+                case '40': val = '40代'; break;
+                case '50': val = '50代'; break;
+                case '60': val = '60代以上'; break;
+            }
+            return val;
+        },
+        displayDatetime: function(datetime) {
+            return moment(datetime).format("YYYY年MM月DD日 hh:mm:ss");
+        },
+    },
 }
 </script>

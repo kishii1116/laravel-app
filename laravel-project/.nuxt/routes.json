@@ -21,6 +21,20 @@
     "_name": "_708aae62"
   },
   {
+    "name": "enquete-init",
+    "path": "/enquete/init",
+    "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/init.vue",
+    "chunkName": "pages/enquete/init",
+    "_name": "_3b5578f0"
+  },
+  {
+    "name": "enquete-id",
+    "path": "/enquete/:id",
+    "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/_id.vue",
+    "chunkName": "pages/enquete/_id",
+    "_name": "_618ff5ec"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/index.vue",

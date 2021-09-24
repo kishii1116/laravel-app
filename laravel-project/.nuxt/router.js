@@ -7,6 +7,8 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _1133e222 = () => interopDefault(import('../client/pages/enquete/index.vue' /* webpackChunkName: "pages/enquete/index" */))
 const _d1a829e0 = () => interopDefault(import('../client/pages/enquete/confirm.vue' /* webpackChunkName: "pages/enquete/confirm" */))
 const _708aae62 = () => interopDefault(import('../client/pages/enquete/done.vue' /* webpackChunkName: "pages/enquete/done" */))
+const _3b5578f0 = () => interopDefault(import('../client/pages/enquete/init.vue' /* webpackChunkName: "pages/enquete/init" */))
+const _618ff5ec = () => interopDefault(import('../client/pages/enquete/_id.vue' /* webpackChunkName: "pages/enquete/_id" */))
 const _c5c54670 = () => interopDefault(import('../client/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -32,6 +34,14 @@ export const routerOptions = {
     path: "/enquete/done",
     component: _708aae62,
     name: "enquete-done"
+  }, {
+    path: "/enquete/init",
+    component: _3b5578f0,
+    name: "enquete-init"
+  }, {
+    path: "/enquete/:id",
+    component: _618ff5ec,
+    name: "enquete-id"
   }, {
     path: "/",
     component: _c5c54670,

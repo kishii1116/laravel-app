@@ -28,6 +28,7 @@
     },
     "dependencies": {
         "@nuxtjs/axios": "^5.13.6",
+        "moment": "^2.29.1",
         "nuxt": "^2.15.8"
     }
 }

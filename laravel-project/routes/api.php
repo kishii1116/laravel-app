@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use app\Http\Controllers\enquete\EnqueteController;
+use app\Http\Controllers\enquete\ListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//phpinfoが見たい時　api/
 Route::get('/', 'enquete\\EnqueteController@phpinfo');
 
-Route::post('/enquete','enquete\\EnqueteController@validationCheck');
+//一覧取得
+Route::get('/enquete/list','enquete\\ListController@getList');
+//詳細取得
+Route::get('/enquete/{id}','enquete\\EnqueteController@getDetail');
+//入力チェック
+Route::post('/enquete/validationCheck','enquete\\EnqueteController@validationCheck');
+//新規保存
 Route::post('/enquete/save','enquete\\EnqueteController@save');
