@@ -65,7 +65,7 @@
                         {{ data.mail }}
                     </td>
                     <td>
-                        <a>詳細を見る</a>
+                        <button @click="showDetail(data.id)">Link</button>
                     </td>
                 </tr>
             </tbody>
@@ -115,6 +115,9 @@ export default{
 					this.dataList = data;
 				});
 		},
+        showDetail($id) {
+            this.$router.push('/enquete/'+$id);
+        }
     },
     filters: {
         displaySex: function(sex) {

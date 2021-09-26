@@ -44,4 +44,18 @@ class EnqueteController extends Controller
         $enquete_management->save();
         return response()->json('saved', Response::HTTP_OK);
     }
+
+    public function update(EnqueteRequest $request) {
+        EnqueteManagement::where('id', '=', $request->id)->update([
+            'name' => $request->name,
+            'sex' => $request->sex,
+            'age' => $request->age,
+            'mail' => $request->mail,
+            'send_mail' => $request->send_mail,
+            'comment' => $request->comment,
+            //'update_dt' => getdate(),
+            'last_updated' => __METHOD__,
+        ]);
+        return response()->json('updated', Response::HTTP_OK);
+    }
 }

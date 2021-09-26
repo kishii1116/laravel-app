@@ -38,3 +38,5 @@ Route::get('/enquete/{id}','enquete\\EnqueteController@getDetail');
 Route::post('/enquete/validationCheck','enquete\\EnqueteController@validationCheck');
 //新規保存
 Route::post('/enquete/save','enquete\\EnqueteController@save');
+
+Route::post('/enquete/update','enquete\\EnqueteController@update');
