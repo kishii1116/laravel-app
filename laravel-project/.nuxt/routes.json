@@ -3,42 +3,36 @@
     "name": "enquete",
     "path": "/enquete",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/index.vue",
-    "chunkName": "pages/enquete/index",
-    "_name": "_1133e222"
+    "chunkName": "pages/enquete/index"
   },
   {
     "name": "enquete-confirm",
     "path": "/enquete/confirm",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/confirm.vue",
-    "chunkName": "pages/enquete/confirm",
-    "_name": "_d1a829e0"
+    "chunkName": "pages/enquete/confirm"
   },
   {
     "name": "enquete-done",
     "path": "/enquete/done",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/done.vue",
-    "chunkName": "pages/enquete/done",
-    "_name": "_708aae62"
+    "chunkName": "pages/enquete/done"
   },
   {
     "name": "enquete-init",
     "path": "/enquete/init",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/init.vue",
-    "chunkName": "pages/enquete/init",
-    "_name": "_3b5578f0"
+    "chunkName": "pages/enquete/init"
   },
   {
     "name": "enquete-id",
     "path": "/enquete/:id",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/enquete/_id.vue",
-    "chunkName": "pages/enquete/_id",
-    "_name": "_618ff5ec"
+    "chunkName": "pages/enquete/_id"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/koujiishii/laravel-app/laravel-project/client/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_c5c54670"
+    "chunkName": "pages/index"
   }
 ]

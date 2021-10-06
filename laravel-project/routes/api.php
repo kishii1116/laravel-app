@@ -31,7 +31,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', 'enquete\\EnqueteController@phpinfo');
 
 //一覧取得
-Route::get('/enquete/list','enquete\\ListController@getList');
+Route::post('/enquete/list','enquete\\ListController@getList');
 //詳細取得
 Route::get('/enquete/{id}','enquete\\EnqueteController@getDetail');
 //入力チェック

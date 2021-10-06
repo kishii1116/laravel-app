@@ -4,9 +4,9 @@
         
         <div>
             氏名
-            <input type="text" v-model="search_name">
+            <input type="text" v-model="search.name">
             年代
-            <select v-model="search_age">
+            <select v-model="search.age">
                 <option value="">選択してください</option>
                 <option value="10">10代以下</option>
                 <option value="20">20代</option>
@@ -16,26 +16,26 @@
                 <option value="60">60代以上</option>
             </select>
             性別
-            <input type="radio" id="radio_all" v-model="search_sex" value=""><label for="radio_all">すべて</label>
-            <input type="radio" id="radio_man" v-model="search_sex" value="1"><label for="radio_man">男性</label>
-            <input type="radio" id="radio_woman" v-model="search_sex" value="2"><label for="radio_woman">女性</label>
+            <input type="radio" id="radio_all" v-model="search.sex" value=""><label for="radio_all">すべて</label>
+            <input type="radio" id="radio_man" v-model="search.sex" value="1"><label for="radio_man">男性</label>
+            <input type="radio" id="radio_woman" v-model="search.sex" value="2"><label for="radio_woman">女性</label>
         </div>
         <div>
             登録日
-            <input type="date" v-model="search_start">
+            <input type="date" v-model="search.start">
             〜
-            <input type="date" v-model="search_end">
+            <input type="date" v-model="search.end">
             メール送信許可
-            <input type="checkbox" id="mail_send" name="mail_send" v-model="search_send_mail" value="1">
-            <input type="hidden" id="mail_send" name="mail_send" v-model="search_send_mail" value="">
+            <input type="checkbox" id="mail_send" name="mail_send" v-model="search.send_mail" value="1">
+            <input type="hidden" id="mail_send" name="mail_send" v-model="search.send_mail" value="">
         </div>
         <div>
             キーワード
-            <input type="text" v-model="search_keyword">
+            <input type="text" v-model="search.keyword">
         </div>
         <div>
             <button>リセット</button>
-            <button class="btn btn-primary">検索する</button>
+            <button class="btn btn-primary" @click="getEnqueteList()">検索する</button>
         </div>
         
         <table>
@@ -86,13 +86,15 @@ export default{
         return {
             //入力項目
             dataList: [],
-            search_name: '',
-            search_sex: '',
-            search_age: '',
-            search_start: '',
-            search_end: '',
-            search_send_mail: '',
-            search_keyword: '',
+            search : {
+                name: '',
+                sex: '',
+                age: '',
+                start: '',
+                end: '',
+                send_mail: '',
+                keyword: '',
+            }
         };
     },
     /*
@@ -110,7 +112,7 @@ export default{
                 this.dataList = res.data.data
             })
             */
-			await this.$axios.get('http://localhost:8000/api/enquete/list')
+			await this.$axios.post('http://localhost:8000/api/enquete/list',this.search)
 				.then(({ data, headers }) => {
 					this.dataList = data;
 				});
