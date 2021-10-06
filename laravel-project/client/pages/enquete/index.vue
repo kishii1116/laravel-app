@@ -34,7 +34,7 @@
             <input type="text" v-model="search.keyword">
         </div>
         <div>
-            <button>リセット</button>
+            <button @click="resetSearchContents()">リセット</button>
             <button class="btn btn-primary" @click="getEnqueteList()">検索する</button>
         </div>
         
@@ -119,6 +119,15 @@ export default{
 		},
         showDetail($id) {
             this.$router.push('/enquete/'+$id);
+        },
+        resetSearchContents() {
+            this.search.name = '';
+            this.search.sex = '';
+            this.search.age = '';
+            this.search.start = '';
+            this.search.end = '';
+            this.search.send_mail = '';
+            this.search.keyword = '';
         }
     },
     filters: {
